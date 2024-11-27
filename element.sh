@@ -32,6 +32,14 @@ else
         atomic_number = $1; " 
     );
 
+    SELECT_ELEMENT_RESULT=$($PSQL "SELECT * FROM elements WHERE atomic_number = $1 " );
+
+    if [[ -z $SELECT_ELEMENT_RESULT ]]
+    then
+      echo "I could not find that element in the database."
+    else
+      echo $SELECT_ELEMENT_RESULT
+    fi
   else
     #If it's not a number we check parameter's length to valiate if it's a symbol or the element's name
     if [[ ${#1} -le 2 ]]
