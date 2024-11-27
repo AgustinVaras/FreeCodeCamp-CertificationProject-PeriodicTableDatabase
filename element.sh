@@ -9,5 +9,10 @@ then
 else
   #Execution logic
   SELECT_ELEMENT_RESULT=$($PSQL "SELECT * FROM elements WHERE atomic_number = $1 " );
-    
+
+  if [[ -z $SELECT_ELEMENT_RESULT ]]
+  then
+    echo "I could not find that element in the database."
+  else
+  fi  
 fi
