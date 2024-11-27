@@ -6,6 +6,8 @@ if [[ -z $1 ]]
 then
   #If no execution argument
   echo "Please provide an element as an argument."
-#else
+else
   #Execution logic
+  SELECT_ELEMENT_RESULT=$($PSQL "SELECT * FROM elements WHERE atomic_number = $1 " );
+    
 fi
