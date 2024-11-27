@@ -14,5 +14,6 @@ else
   then
     echo "I could not find that element in the database."
   else
+    echo $SELECT_ELEMENT_RESULT
   fi  
 fi
