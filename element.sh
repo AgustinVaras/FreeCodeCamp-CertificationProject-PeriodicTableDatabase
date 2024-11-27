@@ -18,6 +18,7 @@ else
     else
       echo $SELECT_ELEMENT_RESULT
     fi
+<<<<<<< HEAD
 
   else
 
@@ -42,6 +43,7 @@ else
         echo $SELECT_ELEMENT_RESULT
       fi
     fi
+
 
   fi  
 fi
