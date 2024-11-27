@@ -18,6 +18,7 @@ else
     else
       echo $SELECT_ELEMENT_RESULT
     fi
-
+  else
+    SELECT_ELEMENT_RESULT=$($PSQL "SELECT * FROM elements FROM elements WHERE symbol = '$1'" )
   fi  
 fi
