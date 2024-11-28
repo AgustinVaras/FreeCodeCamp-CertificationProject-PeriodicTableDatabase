@@ -18,7 +18,6 @@ else
     else
       echo $SELECT_ELEMENT_RESULT
     fi
-<<<<<<< HEAD
 
   else
 
