@@ -18,9 +18,7 @@ else
     else
       echo $SELECT_ELEMENT_RESULT
     fi
-
   else
-
     #If it's not a number we check parameter's length to valiate if it's a symbol or the element's name
     if [[ ${#1} -le 2 ]]
     then 
@@ -42,7 +40,6 @@ else
         echo $SELECT_ELEMENT_RESULT
       fi
     fi
-
 
   fi  
 fi
