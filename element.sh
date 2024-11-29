@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
+PSQL="psql --username=freecodecamp --dbname=periodic_table --tuples-only -c"
 
 if [[ -z $1 ]]
 then
@@ -32,12 +32,6 @@ else
         atomic_number = $1; " 
     );
 
-    if [[ -z $SELECT_ELEMENT_RESULT ]]
-    then
-      echo "I could not find that element in the database."
-    else
-      echo $SELECT_ELEMENT_RESULT
-    fi
   else
     #If it's not a number we check parameter's length to valiate if it's a symbol or the element's name
     if [[ ${#1} -le 2 ]]
@@ -64,12 +58,6 @@ else
         e.symbol = '$1'; " 
       ); 
 
-      if [[ -z $SELECT_ELEMENT_RESULT ]]
-      then
-        echo "I could not find that element in the database."
-      else
-        echo $SELECT_ELEMENT_RESULT
-      fi
     else
       SELECT_ELEMENT_RESULT=$($PSQL "
         SELECT 
@@ -93,13 +81,16 @@ else
           e.name = '$1'; " 
       );
 
-      if [[ -z $SELECT_ELEMENT_RESULT ]]
-      then
-        echo "I could not find that element in the database."
-      else
-        echo $SELECT_ELEMENT_RESULT
-      fi
     fi
 
+  fi
+  if [[ -z $SELECT_ELEMENT_RESULT ]]
+    then
+      echo "I could not find that element in the database."
+    else
+      echo $SELECT_ELEMENT_RESULT | while read ATOMIC_NUMBER BAR NAME BAR SYMBOL BAR TYPE BAR ATOMIC_MASS BAR MELTING_POINT BAR BOILING_POINT
+      do
+        echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $ATOMIC_MASS amu. $NAME has a melting point of $MELTING_POINT celsius and a boiling point of $BOILING_POINT celsius."
+      done 
   fi  
 fi
